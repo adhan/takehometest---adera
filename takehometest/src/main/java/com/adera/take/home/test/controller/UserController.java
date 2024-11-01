@@ -28,8 +28,17 @@ public class UserController {
     return new ResponseEntity<>("User registered Successfully!", HttpStatus.OK);
   }
 
-  @GetMapping("me")
-  public ResponseEntity<User> authenticatedUser() {
+  @GetMapping("profile")
+  public ResponseEntity<User> authenticatedUserProfile() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    User currentUser = (User) authentication.getPrincipal();
+
+    return ResponseEntity.ok(currentUser);
+  }
+
+  @GetMapping("profile/update")
+  public ResponseEntity<User> authenticatedUserToUpdateProfile() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     User currentUser = (User) authentication.getPrincipal();

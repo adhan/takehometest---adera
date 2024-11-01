@@ -36,4 +36,10 @@ public class UserController {
 
     return ResponseEntity.ok(currentUser);
   }
+
+ @GetMapping({"", "status"})
+  public String getStatus(){
+    return "Application is up and running well";
+  }
+  
 }
